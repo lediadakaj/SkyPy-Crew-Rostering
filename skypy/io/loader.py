@@ -88,3 +88,40 @@ def parse_crew_dict(record: Mapping[str, Any]) -> Crew:
         hourly_cost=_parse_float(record["hourly_cost"], "hourly_cost"),
     )
 
+def load_flights_csv(path: str | Path) -> List[Flight]:
+
+    flights: List[Flight] = []
+    seen_ids: set[str] = set()
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        reader = csv.DictReader(fh)
+        for line_no, row in enumerate(reader, start=2):  # header is line 1
+            try:
+                flight = parse_flight_dict(row)
+            except ValueError as e:
+                raise ValueError(f"{path}:{line_no}: {e}") from None
+            if flight.flight_id in seen_ids:
+                raise ValueError(
+                    f"{path}:{line_no}: duplicate flight_id: {flight.flight_id}"
+                )
+            seen_ids.add(flight.flight_id)
+            flights.append(flight)
+    return flights
+
+
+def load_crew_csv(path: str | Path) -> List[Crew]:
+    crew: List[Crew] = []
+    seen_ids: set[str] = set()
+    with open(path, newline="", encoding="utf-8-sig") as fh:
+        reader = csv.DictReader(fh)
+        for line_no, row in enumerate(reader, start=2):
+            try:
+                member = parse_crew_dict(row)
+            except ValueError as e:
+                raise ValueError(f"{path}:{line_no}: {e}") from None
+            if member.crew_id in seen_ids:
+                raise ValueError(
+                    f"{path}:{line_no}: duplicate crew_id: {member.crew_id}"
+                )
+            seen_ids.add(member.crew_id)
+            crew.append(member)
+    return crew
