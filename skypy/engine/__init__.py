@@ -8,6 +8,7 @@ from skypy.engine.rules import (
 )
 from skypy.engine.pairing import validate_pairing
 from skypy.engine.scheduler import generate_schedule
+from skypy.engine.costs import calculate_layover_costs
 
 __all__ = [
     "REST_THRESHOLD_MINUTES",
@@ -18,4 +19,5 @@ __all__ = [
     "validate_roster",
     "validate_pairing",
     "generate_schedule",
+    "calculate_layover_costs",
 ]
