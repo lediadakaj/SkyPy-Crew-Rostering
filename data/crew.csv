@@ -1,0 +1,7 @@
+crew_id,home_base,max_range_miles,role,hourly_cost
+C001,JFK,5000,Captain,120.0
+C002,JFK,5000,FirstOfficer,85.0
+C003,JFK,1000,Captain,95.0
+C004,JFK,1000,FirstOfficer,70.0
+C005,JFK,3000,Captain,100.0
+C006,JFK,3000,FirstOfficer,75.0
