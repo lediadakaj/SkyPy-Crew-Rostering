@@ -1,0 +1,38 @@
+# Keep the image small and avoid bundling local-only artefacts.
+.git/
+.gitignore
+.github/
+
+# Python build artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+.mypy_cache/
+
+# Virtualenvs (we install fresh inside the image)
+.venv/
+venv/
+env/
+
+# IDE / editor cruft
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Tests are not needed at runtime
+tests/
+
+# Docs / markdown — image runs fine without them
+*.md
+SkyPy_Crew_Rostering_PracticalTest_v3*.pdf
+
+# Sample I/O files — the CLI is not what we run in the container
+roster_output.json
+request.json
+
+# This file itself
+.dockerignore
+Dockerfile
