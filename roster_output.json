@@ -1,0 +1,61 @@
+{
+  "C001": {
+    "role": "Captain",
+    "flights": [
+      "FL001",
+      "FL002"
+    ],
+    "total_hours": 15.0,
+    "layover_cost": 0.0
+  },
+  "C002": {
+    "role": "FirstOfficer",
+    "flights": [
+      "FL001",
+      "FL002"
+    ],
+    "total_hours": 15.0,
+    "layover_cost": 0.0
+  },
+  "C003": {
+    "role": "Captain",
+    "flights": [
+      "FL003",
+      "FL004"
+    ],
+    "total_hours": 3.0,
+    "layover_cost": 0.0
+  },
+  "C004": {
+    "role": "FirstOfficer",
+    "flights": [
+      "FL003",
+      "FL004"
+    ],
+    "total_hours": 3.0,
+    "layover_cost": 0.0
+  },
+  "C005": {
+    "role": "Captain",
+    "flights": [
+      "FL005"
+    ],
+    "total_hours": 6.0,
+    "layover_cost": 800.0
+  },
+  "C006": {
+    "role": "FirstOfficer",
+    "flights": [
+      "FL005"
+    ],
+    "total_hours": 6.0,
+    "layover_cost": 600.0
+  },
+  "unassigned": [
+    {
+      "flight_id": "FL006",
+      "reason": "No valid pair found (Captain: Home Base Start, Route Continuity; FirstOfficer: Home Base Start, Route Continuity)"
+    }
+  ],
+  "total_layover_cost": 1400.0
+}
