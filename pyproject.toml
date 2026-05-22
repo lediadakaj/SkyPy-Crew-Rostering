@@ -1,0 +1,23 @@
+[tool.pytest.ini_options]
+# Pytest config: discover tests under tests/, treat the repo as the import root.
+# Coverage runs on every invocation; the gate fails the suite if coverage of
+# the `skypy` package drops below 90%. Current baseline ~96.5%.
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--cov=skypy",
+    "--cov-report=term-missing",
+    "--cov-fail-under=90",
+]
+
+[tool.coverage.run]
+# app.py is a thin entry point; its logic lives in skypy.api which IS measured.
+source = ["skypy"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+precision = 1
