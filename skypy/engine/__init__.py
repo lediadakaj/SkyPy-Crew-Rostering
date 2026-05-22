@@ -7,6 +7,7 @@ from skypy.engine.rules import (
     validate_roster,
 )
 from skypy.engine.pairing import validate_pairing
+from skypy.engine.scheduler import generate_schedule
 
 __all__ = [
     "REST_THRESHOLD_MINUTES",
@@ -16,4 +17,5 @@ __all__ = [
     "rest_gap_minutes",
     "validate_roster",
     "validate_pairing",
+    "generate_schedule",
 ]
