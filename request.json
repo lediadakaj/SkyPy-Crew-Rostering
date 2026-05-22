@@ -1,0 +1,66 @@
+{
+  "flights": [
+    {
+      "flight_id": "FL001",
+      "origin": "JFK",
+      "destination": "LHR",
+      "departure": "2024-02-01T08:00:00Z",
+      "arrival": "2024-02-01T15:00:00Z",
+      "distance_miles": 3500,
+      "priority": 1
+    },
+    {
+      "flight_id": "FL002",
+      "origin": "LHR",
+      "destination": "JFK",
+      "departure": "2024-02-02T10:00:00Z",
+      "arrival": "2024-02-02T18:00:00Z",
+      "distance_miles": 3500,
+      "priority": 1
+    },
+    {
+      "flight_id": "FL003",
+      "origin": "JFK",
+      "destination": "BOS",
+      "departure": "2024-02-01T09:00:00Z",
+      "arrival": "2024-02-01T10:30:00Z",
+      "distance_miles": 200,
+      "priority": 2
+    },
+    {
+      "flight_id": "FL004",
+      "origin": "BOS",
+      "destination": "JFK",
+      "departure": "2024-02-01T12:30:00Z",
+      "arrival": "2024-02-01T14:00:00Z",
+      "distance_miles": 200,
+      "priority": 2
+    },
+    {
+      "flight_id": "FL005",
+      "origin": "JFK",
+      "destination": "LAX",
+      "departure": "2024-02-01T07:00:00Z",
+      "arrival": "2024-02-01T13:00:00Z",
+      "distance_miles": 2500,
+      "priority": 3
+    },
+    {
+      "flight_id": "FL006",
+      "origin": "LHR",
+      "destination": "CDG",
+      "departure": "2024-02-03T08:00:00Z",
+      "arrival": "2024-02-03T09:30:00Z",
+      "distance_miles": 250,
+      "priority": 2
+    }
+  ],
+  "crew": [
+    {"crew_id": "C001", "home_base": "JFK", "max_range_miles": 5000, "role": "Captain",      "hourly_cost": 120.0},
+    {"crew_id": "C002", "home_base": "JFK", "max_range_miles": 5000, "role": "FirstOfficer", "hourly_cost": 85.0},
+    {"crew_id": "C003", "home_base": "JFK", "max_range_miles": 1000, "role": "Captain",      "hourly_cost": 95.0},
+    {"crew_id": "C004", "home_base": "JFK", "max_range_miles": 1000, "role": "FirstOfficer", "hourly_cost": 70.0},
+    {"crew_id": "C005", "home_base": "JFK", "max_range_miles": 3000, "role": "Captain",      "hourly_cost": 100.0},
+    {"crew_id": "C006", "home_base": "JFK", "max_range_miles": 3000, "role": "FirstOfficer", "hourly_cost": 75.0}
+  ]
+}
