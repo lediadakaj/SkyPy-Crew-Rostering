@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from datetime import timedelta
 
 from skypy.engine import calculate_layover_costs

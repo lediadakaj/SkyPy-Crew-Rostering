@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Dict, List, Optional
 
 from skypy.engine.rules import required_rest_minutes, rest_gap_minutes

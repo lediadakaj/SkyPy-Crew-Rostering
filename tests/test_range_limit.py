@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from skypy.engine import generate_schedule, validate_roster
 from skypy.engine.scheduler import REASON_NO_PAIR
 from skypy.models import Roster

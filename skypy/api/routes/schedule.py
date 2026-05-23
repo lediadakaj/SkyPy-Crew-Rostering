@@ -1,7 +1,3 @@
-"""POST /schedule — run the scheduler on submitted flights + crew."""
-
-from __future__ import annotations
-
 from flask import Blueprint, jsonify, request
 
 from skypy.api.errors import bad_request

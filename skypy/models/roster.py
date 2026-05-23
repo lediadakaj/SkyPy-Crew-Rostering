@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import Dict, List, Mapping
 from skypy.models.flight import Flight
 

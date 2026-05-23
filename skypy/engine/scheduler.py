@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import heapq
 from typing import Dict, List, Mapping, Optional, Set, Tuple
 

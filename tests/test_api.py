@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import pytest
 
 from skypy.api import create_app
