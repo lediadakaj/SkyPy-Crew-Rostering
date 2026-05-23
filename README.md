@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-### CLI — generate `roster_output.json`
+### CLI: generate `roster_output.json`
 
 ```bash
 python main.py
