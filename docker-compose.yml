@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    image: skypy-roster:latest
+    container_name: skypy-roster
+    ports:
+      - "5000:5000"
+    # `no` so a failing test run doesn't trigger an endless restart loop. The
+    # in-container pytest gate makes "exited 1" a meaningful signal we want to
+    # surface, not paper over.
+    restart: "no"

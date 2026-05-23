@@ -1,4 +1,3 @@
-# Keep the image small and avoid bundling local-only artefacts.
 .git/
 .gitignore
 .github/
@@ -22,9 +21,6 @@ env/
 *.swp
 .DS_Store
 
-# Tests are not needed at runtime
-tests/
-
 # Docs / markdown — image runs fine without them
 *.md
 SkyPy_Crew_Rostering_PracticalTest_v3*.pdf
@@ -33,6 +29,5 @@ SkyPy_Crew_Rostering_PracticalTest_v3*.pdf
 roster_output.json
 request.json
 
-# This file itself
 .dockerignore
 Dockerfile
