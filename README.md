@@ -55,6 +55,12 @@ Listens on `http://127.0.0.1:5000`.
 | `GET /roster/<crew_id>` | Flights, hours, and layover cost for one crew member |
 | `GET /report` | Summary of the last scheduling run |
 | `GET /health` | Liveness probe (`{"status": "ok"}`) |
+| `GET /swagger-ui` | Swagger UI for the endpoints above |
+| `GET /openapi.json` | Raw OpenAPI 3.0.3 spec |
+
+The OpenAPI document is assembled by [flask-smorest](https://flask-smorest.readthedocs.io/)
+from per-route YAML files under [`skypy/api/openapi/`](skypy/api/openapi/) — edit those
+to change request/response docs.
 
 Example with the included `request.json`:
 
@@ -75,6 +81,20 @@ python -m pytest
 Runs the full pytest suite with coverage. Gate fails the run below 90%.
 
 ### Docker
+
+Build the image and start the service:
+
+```bash
+./deploy.sh                
+# or, equivalently:
+docker compose up --build
+```
+
+**The container runs the pytest suite on every startup.** waitress only binds
+port 5000 if `pytest` exits 0. A test failure stops the container without
+ever opening the port, so a green deploy is also a green test run.
+
+Lower-level alternative (no compose):
 
 ```bash
 docker build -t skypy-roster .
@@ -97,11 +117,15 @@ with a `HEALTHCHECK` against `/health`.
 ## Project structure
 
 ```
-skypy/models/      Flight, Crew, Roster (pure data)
-skypy/engine/      rules, pairing, scheduler, costs
-skypy/io/          CSV loader + JSON exporter
-skypy/api/         Flask app factory + blueprints
-tests/             pytest suite
+skypy/models/         Flight, Crew, Roster (pure data)
+skypy/engine/         rules, pairing, scheduler, costs
+skypy/io/             CSV loader + JSON exporter
+skypy/api/            Flask app factory + blueprints
+skypy/api/openapi/    Per-route YAML specs served via Swagger UI
+tests/                pytest suite
+Dockerfile            production image, pytest-gated startup
+docker-compose.yml    single-service compose for local runs
+deploy.sh             one-command build + start
 ```
 
 See [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md) for scoped-out features and
