@@ -1,16 +1,23 @@
 from typing import Optional
 
-from flask import Blueprint, jsonify
+from flask import jsonify
+from flask_smorest import Blueprint
 
 from skypy.api.errors import not_found
+from skypy.api.openapi import load_doc
 from skypy.api.state import get_state
 from skypy.models import Crew
 
 
-roster_bp = Blueprint("roster", __name__)
+roster_bp = Blueprint(
+    "roster",
+    __name__,
+    description="Look up the assigned flights for a specific crew member.",
+)
 
 
 @roster_bp.route("/roster/<crew_id>", methods=["GET"])
+@roster_bp.doc(**load_doc("roster"))
 def get_roster(crew_id: str):
     state = get_state()
     if not state.has_run:

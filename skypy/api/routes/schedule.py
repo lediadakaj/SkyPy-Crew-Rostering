@@ -1,16 +1,23 @@
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
+from flask_smorest import Blueprint
 
 from skypy.api.errors import bad_request
+from skypy.api.openapi import load_doc
 from skypy.api.state import get_state
 from skypy.engine import calculate_layover_costs, generate_schedule
 from skypy.io import parse_crew_dict, parse_flight_dict
 from skypy.io.exporter import build_output_payload
 
 
-schedule_bp = Blueprint("schedule", __name__)
+schedule_bp = Blueprint(
+    "schedule",
+    __name__,
+    description="Run the crew scheduler over a set of flights and crew members.",
+)
 
 
 @schedule_bp.route("/schedule", methods=["POST"])
+@schedule_bp.doc(**load_doc("schedule"))
 def post_schedule():
     if not request.is_json:
         return bad_request("Request body must be JSON with Content-Type: application/json")
@@ -30,7 +37,6 @@ def post_schedule():
     except (ValueError, TypeError) as e:
         return bad_request(str(e))
 
-    # Duplicate-ID detection
     seen_flight_ids: set[str] = set()
     for f in flights:
         if f.flight_id in seen_flight_ids:

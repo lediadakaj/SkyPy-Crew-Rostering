@@ -1,0 +1,45 @@
+summary: Get crew member roster
+description: >-
+  Returns the chronologically ordered flight list assigned to the given crew
+  member in the most recent scheduling run, along with total flight hours and
+  accrued layover cost. Returns 404 if no schedule has been generated yet, or
+  if the crew_id has no assignments.
+parameters:
+  - name: crew_id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Identifier of the crew member (e.g. C001).
+responses:
+  200:
+    description: Roster for the requested crew member.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            crew_id:
+              type: string
+            role:
+              type: string
+              enum:
+                - Captain
+                - FirstOfficer
+            flights:
+              type: array
+              items:
+                type: string
+            total_hours:
+              type: number
+            layover_cost:
+              type: number
+  404:
+    description: Crew not found or no schedule has been generated yet.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string

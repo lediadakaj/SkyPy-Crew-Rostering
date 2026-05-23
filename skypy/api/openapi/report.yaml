@@ -1,0 +1,46 @@
+summary: Get scheduling report
+description: >-
+  Returns aggregate metrics from the most recent POST /schedule call: flights
+  scheduled, flights unassigned, per-crew totals, and total layover cost.
+  Returns zeroed counters and an empty per_crew map when no schedule has been
+  generated yet.
+responses:
+  200:
+    description: Report payload (empty-state shape before any schedule has run).
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            flights_scheduled:
+              type: integer
+            flights_unassigned:
+              type: integer
+            total_layover_cost:
+              type: number
+            unassigned:
+              type: array
+              items:
+                type: object
+                properties:
+                  flight_id:
+                    type: string
+                  reason:
+                    type: string
+            per_crew:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  flights:
+                    type: array
+                    items:
+                      type: string
+                  total_hours:
+                    type: number
+                  layover_cost:
+                    type: number
+            note:
+              type: string

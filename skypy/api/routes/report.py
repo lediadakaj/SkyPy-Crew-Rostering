@@ -1,14 +1,21 @@
 from typing import Dict
 
-from flask import Blueprint, jsonify
+from flask import jsonify
+from flask_smorest import Blueprint
 
+from skypy.api.openapi import load_doc
 from skypy.api.state import get_state
 
 
-report_bp = Blueprint("report", __name__)
+report_bp = Blueprint(
+    "report",
+    __name__,
+    description="Aggregate summary of the most recent scheduling run.",
+)
 
 
 @report_bp.route("/report", methods=["GET"])
+@report_bp.doc(**load_doc("report"))
 def get_report():
     state = get_state()
     if not state.has_run:

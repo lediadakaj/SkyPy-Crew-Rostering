@@ -1,0 +1,13 @@
+summary: Health check
+description: Returns 200 OK whenever the service process is up.
+responses:
+  200:
+    description: Service is up.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: ok

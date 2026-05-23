@@ -1,0 +1,115 @@
+summary: Run the scheduler
+description: >-
+  Accepts a JSON body with `flights` and `crew` arrays, runs the scheduling
+  engine, and returns the resulting roster grouped by crew member, plus the
+  list of unassigned flights and the total layover cost. The result is also
+  stored in-process so that GET /roster/<crew_id> and GET /report can serve
+  the most recent run.
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - flights
+          - crew
+        properties:
+          flights:
+            type: array
+            items:
+              type: object
+              required:
+                - flight_id
+                - origin
+                - destination
+                - departure
+                - arrival
+                - distance_miles
+                - priority
+              properties:
+                flight_id:
+                  type: string
+                origin:
+                  type: string
+                destination:
+                  type: string
+                departure:
+                  type: string
+                  format: date-time
+                arrival:
+                  type: string
+                  format: date-time
+                distance_miles:
+                  type: integer
+                  minimum: 1
+                priority:
+                  type: integer
+                  enum: [1, 2, 3]
+          crew:
+            type: array
+            items:
+              type: object
+              required:
+                - crew_id
+                - home_base
+                - max_range_miles
+                - role
+                - hourly_cost
+              properties:
+                crew_id:
+                  type: string
+                home_base:
+                  type: string
+                max_range_miles:
+                  type: integer
+                  minimum: 1
+                role:
+                  type: string
+                  enum:
+                    - Captain
+                    - FirstOfficer
+                hourly_cost:
+                  type: number
+                  minimum: 0
+responses:
+  200:
+    description: Schedule was generated successfully.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            unassigned:
+              type: array
+              items:
+                type: object
+                properties:
+                  flight_id:
+                    type: string
+                  reason:
+                    type: string
+            total_layover_cost:
+              type: number
+          additionalProperties:
+            type: object
+            properties:
+              role:
+                type: string
+              flights:
+                type: array
+                items:
+                  type: string
+              total_hours:
+                type: number
+              layover_cost:
+                type: number
+  400:
+    description: Request body was malformed or contained invalid data.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
